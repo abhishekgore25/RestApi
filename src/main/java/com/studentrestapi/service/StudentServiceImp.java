@@ -25,7 +25,6 @@ public class StudentServiceImp implements StudentService {
 	@Override
 	public String saveStudent(StudentDto studentDto) 
 	{
-		
 		objectMapper.setVisibility(PropertyAccessor.FIELD, Visibility.ANY);
 		StudentEntity studentEntity = objectMapper.convertValue(studentDto, StudentEntity.class);
 		studentRepository.save(studentEntity);
@@ -35,7 +34,6 @@ public class StudentServiceImp implements StudentService {
 	@Override
 	public String updateStudent(StudentDto studentDto, int id) 
 	{
-		
 		studentDto.setId(id);
 		objectMapper.setVisibility(PropertyAccessor.FIELD, Visibility.ANY);
 		StudentEntity studentEntity = objectMapper.convertValue(studentDto, StudentEntity.class);
@@ -65,7 +63,8 @@ public class StudentServiceImp implements StudentService {
 		List<StudentEntity> list = studentRepository.findAll();
 		List<StudentDto> dtoList = new ArrayList<>();
 		
-		for(StudentEntity studentEntity: list) {
+		for(StudentEntity studentEntity: list) 
+		{
 			objectMapper.setVisibility(PropertyAccessor.FIELD, Visibility.ANY);
 			StudentDto studentDto = objectMapper.convertValue(studentEntity, StudentDto.class);
 			dtoList.add(studentDto);
